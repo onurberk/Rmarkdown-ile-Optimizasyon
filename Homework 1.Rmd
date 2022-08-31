@@ -1,0 +1,85 @@
+---
+title: "Homework 1"
+author: "202167002-Onur Berk Yeşil"
+date: "04/04/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# **Zaman Planlaması Problemi**   
+
+24 saat hizmet veren bir markette ihtiyaç duyulan minimum personel sayısı farklı saat dilimlerine göre aşağıdaki tabloda verilmiştir. Saat dilimlerinin başında işbaşı yapılabilmektedir.   
+
+Saat     | Personel Sayısı| 
+|:-------------|:------------|
+24:00-4:00 | 5 |
+4:00-8:00 | 7 |
+8:00-12:00 | 15 |
+12:00-16:00 | 8 |
+16:00-20:00 | 12 |
+20:00-24:00 | 9 |
+
+
+Sendika çalışanların işe başladıktan sonra 8'er saatlik mesailer ile çalışmasını zorunlu kılmaktadır. Optimal personel sayısını bulmak için kullanacağınız modeli detayları ile açıklayınız (Personel sayısı tam sayı olmak zorunda değil)?  
+
+
+###  **Zaman Planlaması Problemi Modeli**
+
+$$min\;z = x_1+x_2+x_3+x_4+x_5+x_6$$
+Model daha önce derste çözdüğümüz Postacı probleminin aynısıdır. İlk olarak bizden istenen kişi sayınını optimizi etmemizi istediği için belli saat aralıklarında işe başlayan $x_1,x_2,x_3,x_4,x_5,x_6$ ayırdım. Ve bunların toplamını optimize etmek için yukardaki eşitliği yazdım.
+
+
+$$\begin{alignat*}{7}
+x_1 & {}+{} & x_2 & {}+{} &  & {}+{} &  & {}+{} & & {}+{} & & {}\geq{}5\\
+& {}+{} & x_2 & {}+{} & x_3 & {}+{} &  & {}+{} &  & {}+{} & 	& {}\geq{}7\\
+& {}+{} &  & {}+{} & x_3 & {}+{} & x_4 & {}+{} &  & {}+{} & 	& {}\geq{}15\\
+& {}+{} &  & {}+{} &  & {}+{} & x_4 & {}+{} & x_5 & {}+{} & 	& {}\geq{}8\\
+& {}+{} &  & {}+{} &  & {}+{} &  & {}+{} & x_5 & {}+{} & x_6	& {}\geq{}12\\
+x_1 & {}+{} &  & {}+{} &  & {}+{} &  & {}+{} &  & {}+{} & x_6	& {}\geq{}9
+\end{alignat*}$$
+$$ x_i \geq 0 \\6 \geq i > 0$$
+Ardından kısıtlarımı ve zaman probleminin modelini tamamlamış oldum.
+
+
+
+# **Üretim Planlaması**
+
+100000 TL bütçesi ve 200 dönüm arazisi olan bir çiftçi ailesi yatırım yapmak istemektedir. Aile bireyleri 7500 adam-saat işgücüne sahiptir. Çiftlikte çalışılmayan zamanlarda, 25 TL/saat ücretle kasabada çalışmak mümkün olmaktadır.   
+
+Çiftlikde inek ve koyun beslenebileceği gibi Arpa, Mısır ve Yulaf üretimi de yapılabilmektedir. Her bir inek ve koyun için sırası ile 5000 ve 750 TL yatırım yapmak gerekmektedir. İnek başına 1.2 dönüm arazi ve 100 adam-saat çalışma gerekmekte ve bunun sonucunda yılda 4000 TL gelir gelmesi beklenmektedir. Koyun için ise 0.2 dönüm arazi ve 10 adam-saat işgücü gerekmekte ve yıllık gelir ise 500 TL olmaktadır. Çiftliğin inek ve koyun barındırma kapasitesi sırası ile 40 ve 150 olarak hesaplanmaktadır. 
+
+Arpa, Mısır ve Yulaf için ilk yatırıma ihtiyaç duyulmamaktadır. Ekilen ürünler için gereken işgücü ve beklenen gelir aşağıdaki tabloda verilmektedir   
+
+
+Ürün     | Arpa  | Mısır  | Yulaf | 
+-------------|:------------|:-------------:|:-------------|
+Adam-Saat İşgücü |	70	| 105	| 50  |
+Yıllık Gelir |	1000 |	1500 |	800 |
+
+Çiftçi ailesi, ekilecek ürünlerin ve alınacak inek ve koyunların sayısı ile kasabada çalışabileceği süreleri hesaplamak istemektedir. Bu problem için doğrusal programlama problemini yazınız (tüm rakamlar tam sayı olmak zorunda değildir).   
+
+
+### **Üretim Planlaması Problemi Modeli**
+
+Modelde yapıcağım kısatmaların Gösterimi
+
+$A \rightarrow$ Ekilen Arpa \
+$M \rightarrow$ Ekilen Mısır \
+$Y \rightarrow$ Ekilen Yulaf \
+$I \rightarrow$ Ekilen İnek Sayısı \
+$K \rightarrow$ Ekilen Koyun Sayısı
+
+$$max\;z = 4000I + 500K + 1000A + 1500M + 800Y \;(Model)$$
+
+$$1.2\;I + 0.2\;K \leq{}200 \;(Arazi\; dönüm \;kısıtı)$$
+$$70\;A + 150\;M + 50\;Y + 100\;I + 10\;K \leq{}7500\;(Adam\; işgücü \;kısıtı)$$
+
+$$5000\;I + 750\;K \leq{}100.000\;(Bütçe)$$
+
+$$I \leq{}40\;(inek\; barınma \;kapasitesi)$$
+
+$$K \leq{}150 \;(koyun\; barınma \;kapasitesi)$$
+$$I,K,A,M,Y \geq{}0$$

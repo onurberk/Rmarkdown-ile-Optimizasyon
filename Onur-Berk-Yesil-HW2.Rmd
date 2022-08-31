@@ -1,0 +1,110 @@
+---
+title: "Homework 2"
+author: "Onur Berk Yeşil"
+date: "202167002"
+output: slidy_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Klasik Doğrusal Programlama Problemleri   
+
+```{r, echo=TRUE, eval=TRUE}
+
+sd.no <- 7002 * (7002 %% sample(1:10, 1)) #1234 öğrenci numaranızın son 4 hanesi ile değiştirilecek
+set.seed(sd.no) 
+sample(1:10,2) # Rassal olarak elde edilen bu iki rakam oynatma listesindeki sırayı gösteriyor.  
+
+```
+
+1.Diet DP problemi (4)
+
+2.Cutting Stock  DP Problemi (7)  
+
+
+## Diet DP problemi 
+Bir meyve suyusu şiketi bir müşteri için bir karışım hazırlayacaktır.Bunun için kullancağı portakal,çilek,ananas,kivi, nar ve mandalina ya ek olarak 250 litre su kullanıcaktır.Bu karışım için kullanacağı ürünlerin 1 litredeki kalori ve fiyat tablosunu vermiştir. 
+
+Ürün     | Çilek     | Ananas |Portakal| Kivi  | Nar  | Mandalina  | Su 
+---------|:----------|:-------|:-------|:------|:---- |:-----------|:----|
+K-Cal    |	311.14	 |  594.66| 459.77 | 577.83|760.60| 558.14	   |  0  |
+Protein  |	8.19     |	4.85  |	11.49  | 8.25	 | 12.47| 8.14	     |  0  |   
+Fats(gr) |	2.84     |	2.43  |	1.15   | 9.43	 | 3.74 | 2.33	     |  0  |  
+Cal.(mg) |	162.66   |	182.04|	459.77 | 341.98|162.09| 383.72	   |  0  |
+Iron.(mg)|	2.95     |	3.64  |	3.45   | 3.54	 |12.47 | 4.65	     |  0  |
+Vit.E(mg)|	2.18     |	1.21  |	2.53   | 10.97 |6.86  | 6.40	     |  0  |
+Cost     |	   4     |	2.60  |	1.80   | 4.80	 |3.70  | 2.10	     |0.30 |
+
+Yapılan karışımda alınması gereken maksimum kalori miktarı 400 k-cal,alınması gereken minimum protein miktarı 5 gr.,alınması gereken maksimum yağ 2 gr., alınması gereken minimum kalsiyum 200 mg, alınması gereken minimum demir 3 mg, alınması gereken minimum E vitamini 3 mg. olacak şekilde hazırlanacaktır. Her bir üründen en az litrede %0.06 kadar ve sudan maksimum litrede %50 kadar karışım yapılacaktır.Yapılan karışımın verilen kısıtlara göre minimum maliyeti ne olur ?
+
+## Diet DP Probleminin Modeli
+
+$C \rightarrow$ Litre başına çilek suyu \
+$A \rightarrow$ Litre başına ananas suyu \
+$P \rightarrow$ Litre başına portakal suyu \
+$K \rightarrow$ Litre başına kivi suyu \
+$N \rightarrow$ Litre başına nar suyu \
+$M \rightarrow$ Litre başına mandalina suyu \
+$S \rightarrow$ Litre başına su
+
+$$min\;z = 4.00\;C + 2.60\;A+ 1.80\;P + 4.80\;K + 3.70\;N + 2.10\;M + 0.3\;S \;(Model)$$
+$$311.14\;C + 594.66\;A+ 459.77\;P + 577.83\;K + 760.60\;N + 558.14\;M \leq{}400\;(Kalori\; Kısıtı)$$
+$$8.19\;C + 4.85\;A+ 11.49\;P + 8.25\;K + 12.47\;N + 8.14\;M \geq{}5\;(Protein\; Kısıtı)$$
+$$2.84\;C + 2.43\;A+ 1.15\;P + 9.43\;K + 3.74\;N + 2.33\;M \leq{}2\;(Yağ\; Kısıtı)$$
+$$162.66\;C + 182.04\;A+ 459.77\;P + 341.98\;K + 162.09\;N + 383.72\;M \geq{}200\;(Kalsiyum\; Kısıtı)$$
+$$2.95\;C + 3.64\;A+ 3.45\;P + 3.54\;K + 12.47\;N + 4.65\;M \geq{}3\;(Demir\; Kısıtı)$$
+$$2.18\;C + 1.21\;A+ 2.53\;P + 10.97\;K + 6.86\;N + 6.40\;M \geq{}3\;(E\;Vitamini\; Kısıtı)$$
+$$C\geq{}0.06\;(Cilek\; Kısıtı)$$
+$$A\geq{}0.06\;(Ananas\; Kısıtı)$$
+$$P\geq{}0.06\;(Portakal\; Kısıtı)$$
+$$K\geq{}0.06\;(Kivi\; Kısıtı)$$
+$$N\geq{}0.06\;(Nar\; Kısıtı)$$
+$$M\geq{}0.06\;(Mandalina\; Kısıtı)$$
+$$S\leq{}0.5\;(Su\; Kısıtı)$$
+$$C+A+P+K+N+M+S=1$$
+
+
+
+## Cutting Stock  DP Problemi 
+
+Bir kağıt firması aşağıdaki verilen rulo kullanarak 100 inçlik kağıt rulo yapıcaktık.Hedef en az yanlış ile 100 inçlik kağıt rulolar nasıl yaparız ?
+
+
+Türler   |    A      |    B   |  C     |   D   | 
+---------|:----------|:-------|:-------|:------|
+Rulo     |    318    |    219 |635     | 428   | 
+Genişlik |	   42    |  36    | 26     | 16    |
+
+## Karar Degiskenleri
+
+>- $x_1=42-42-16\; ;\sum x_1 =100$ \
+>- $x_2=42-36-16-\color{blue}{6}\; ;\sum x_2 =100$ \
+>- $x_3=42-26-26-\color{blue}{6}\; ;\sum x_3 =100$ \
+>- $x_4=42-26-16-16\; ;\sum x_4 =100$ \
+>- $x_5=42-16-16-16-\color{blue}{10}\; ;\sum x_5 =100$ \
+>- $x_6=36-36-26-\color{blue}{2}\; ;\sum x_6 =100$ \
+>- $x_7=36-36-16-\color{blue}{12}\; ;\sum x_7 =100$ \
+>- $x_8=36-26-26-\color{blue}{12}\; ;\sum x_8 =100$ \
+>- $x_9=36-26-16-16-\color{blue}{6}\; ;\sum x_9 =100$ \
+>- $x_{10}=36-16-16-16-16\; ;\sum x_{10} =100$ \
+>- $x_{11}=26-26-26-16-\color{blue}{6}\; ;\sum x_{11} =100$ \
+>- $x_{12}=26-26-16-16-16\; ;\sum x_{12} =100$ \
+>- $x_{13}=26-16-16-16-\color{blue}{10}\; ;\sum x_{13} =100$ \
+>- $x_{14}=16-16-16-16-\color{blue}{4}\; ;\sum x_{14} =100$ 
+
+## Model Kurma
+
+$$min\;z = x_1+x_2+x_3+x_4+x_5+x_6+x_7+x_8+x_9+x_{10}+x_{11}+x_{12}+x_{13}+x_{14}\;(Model)$$
+$$ 2x_1+x_2+x_3+x_4+x_5\geq{}318\;(A\;için\;Kısıt)$$
+$$x_2 + 2x_6+2x_7+x_8+x_9+x_{10}\geq{}219\;(B\;için\;Kısıt)$$
+
+$$2x_3+x_4+x_6+2x_8+x_9+3x_{11}+2x_{12}+x_{13}\geq{}635\;(C\;için\;Kısıt)$$
+
+$$x_1+x_2+2x_4+3x_5+x_7+2x_9+4x_{10}+x_11+3x_{12}+4x_{13}+6x_{14}\geq{}428\;(D\;için\;Kısıt)$$
+$$x_i\; \geq{} 0 \; (i \in [1,14])$$
+
+
+
+

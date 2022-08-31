@@ -1,0 +1,70 @@
+---
+title: 'Odev #3'
+author: "Ad-Soyad"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Doğrusal Programlama Ödev 3 
+
+Aşağıda verilen klasik doğrusal programlama problemleri için modelleri oluşturunuz. Ödev ".rmd" dosyası olarak hazırlanmalıdır. Öncelikle, Ad-Soyad (author) kısmını, isminiz ve soyisminiz ile değiştirin ve ek olarak öğrenci numaranızı yazınız. Örneğin:   
+
+author: AAAAAAA BBBBBBBB No:XXXXXXX 
+
+Dosyayı kaydederken ismini isim-soyisim-hw3.rmd olarak değiştirilmelisiniz ve "Knit" edildikten sonra hem ".html" dosyası hem de ".rmd" dosyası ödev olarak gönderilmelisiniz. Örnek olarak:  
+
+ibrahim-ozkan-hw3.rmd 
+ibrahim-ozkan-hw3.html 
+
+Ödevler: 
+
+"iozkan@cankaya.edu.tr" adresine gönderilmelidir. Konu (Subject) satırına ise Ödev-3 isim-soyisim yazılmalıdır. 
+
+
+## Restoran Problemi   
+
+Yüksek kaliteli organik yiyecekler sunan bir yemek firması açılması düşünülmektedir. Karı maksimize edecek günlük menü için planı tasarlamak için ilk aşamada sadece üç çeşit yiyecek sunulacaktır. Bunlar: Sarımsaklı pideli Humus (H), Musakka (M) ve maydanozlu ve naneli geleneksel bir Tabule (T) yemeği.   
+
+Yemeklerin aynı gün pişirilip 12:00 ile 14:00 arasında teslimat edilmesi planlanmaktadır. Toplam yemek pişirme süresi 4, paketleme süresi 2 ve teslimat süresi 2 saat olarak tahmin edilmektedir. Humus pişirme süresi 10 porsiyon için 1 saat, paketleme süresi saatte 20 porsiyon ve teslimat süresi ise saatte 30 porsiyon olarak hesaplanmaktadır. Humusun porsiyon maliyeti 1$ , satış fiyatı ise 7$ olarak düşünülmektedir.   
+
+Musakka pişirme süresi bir saat içinde 5 porsiyon, paketleme hızı saatte 15 porsiyon ve teslimat süresi ise saatte 15 porsiyondur. Maliyet 2$ ve satış fiyatı ise 12$ dolar olarak tahmin edilmektedir.    
+
+Son olarak saatte 15 porsiyon Tabule hazırlanabilir, saatte 25 porsiyon paketlenebilir ve saatte 30 porsiyon teslim edilebilir. Maliyeti sadece 0,5 dolar ve satış fiyatı ise 5 dolar olarak düşünülmektedir.    
+
+Müşterilerle görüşmelerde, her gün 20 porsiyon kadar Humus, 10 porsiyon kadar Musakka ve 30 porsiyon kadar Tabule istedikleri öğrenilmiştir.     
+
+a) Karı maksimize edecek yemeklerin kombinasyonlarını bulmak için bir doğrusal programlama modeli kurunuz. Her bir adımı açık olarak belirtiniz. Doğrusal Programlama Modelini “R” programı yardımı ile çözünüz (Bu bir tam sayı problemi değil)     
+
+b) Yeni bir eleman günde 1 saat 10$ karşılığında çalışabileceğini ancak Pişirme, Paketleme veya teslimat sürecinin yalnızca bir tanesinde yer alabileceğini belirtmiştir. Bu elemanın işe alınması karlı ise hangi süreçte çalıştırılması karı maksimize eder?   
+
+c) Humus talebinde bir düşüş gerçekleşmiştir.  Bu yeni durumda çözüm değişir mi?    
+
+d) Yönetim herhangi bir yemeğin toplam porsiyonların %50’sini geçmemesi gerektiğine karar vermiştir. Yeni durumda Model nasıl değişmiştir ve çözüm sonucu ne olacaktır?   
+
+
+
+```{r, echo=TRUE, eval=TRUE}
+library(lpSolve)
+
+# Model Burada Tanimlayiniz
+
+
+# Çözümü Burada Yapiniz  
+
+
+# Sonuçların raporlanması için bazı değişkenler atamak isterseniz burada belirtiniz  
+
+```
+
+## Restoran DP Modeli      
+
+
+
+ 
+
+
+
